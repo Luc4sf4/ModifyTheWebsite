@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css" media="screen" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="JS/getParameter.js"></script>
+    <!-- <script src="./getCategoria.js"></script> -->
+    <!-- <script src="JS/index.js"></script> -->
+    <!-- <script src="./getDestaque.js"></script> -->
+
+    <style>
+        html,
+        body,
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: "Lato", sans-serif
+        }
+
+        .mySlides {
+            display: none
+        }
+
+        .w3-tag,
+        .fa {
+            cursor: pointer
+        }
+
+        .w3-tag {
+            height: 15px;
+            width: 15px;
+            padding: 0;
+            margin-top: 6px;
+            font-size: 12px
+        }
+
+        #nameUser {
+            float: right;
+            color: white;
+            text-align: right;
+            margin-top: 10px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-card">
+            <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+                href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i
+                    class="fa fa-bars"></i></a>
+            <a href="home.html" class="w3-bar-item w3-button w3-padding-large">Home</a>
+            <a href="Cadastro.html" class="w3-bar-item w3-button w3-padding-large" id="cadastroTop">Cadastre-se</a>
+            <a href="Login.html" class="w3-bar-item w3-button w3-padding-large" id="loginTop">Login</a>
+            <a href="categorias.html" class="w3-bar-item w3-button w3-padding-large">Categoria</a>
+            <a href="#contact" class="w3-bar-item w3-button w3-padding-large">Fale Conosco</a>
+            <a href="historico.html" class="w3-bar-item w3-button w3-padding-large">Minhas Compras</a>
+            <div id="nameUser"> </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <!-- Content -->
+    <div class="w3-content" style="max-width:1500px;margin-top:80px;">
+
+        <div class="w3-panel">
+            <h1 class="localizacao tituloLoja" id="tituloHome"></h1>
+        </div>
+
+
+        <section class="carousel">
+            <input type="radio" name="carousel" id="carousel1" checked="checked" />
+            <input type="radio" name="carousel" id="carousel2" />
+            <input type="radio" name="carousel" id="carousel3" />
+
+            <main class="carousel__stage">
+                <aside class="carousel__item">
+                    <img class="carousel__image" src="imagens/ternos.png" />
+                    <label for="carousel2" class="carousel__next carousel__control"></label>
+                </aside>
+
+                <aside class="carousel__item">
+                    <label for="carousel1" class="carousel__prev carousel__control"></label>
+                    <img class="carousel__image" src="imagens/camisassociais.png" />
+                    <label for="carousel3" class="carousel__next carousel__control"></label>
+                </aside>
+
+                <aside class="carousel__item">
+                    <label for="carousel2" class="carousel__prev carousel__control"></label>
+                    <img class="carousel__image" src="imagens/smokings.png" />
+                    <label for="carousel4" class="carousel__next carousel__control"></label>
+                </aside>
+            </main>
+        </section>
+
+
+        <div class="w3-black" id="tour">
+            <div class="w3-container w3-content" style="max-width:1000px">
+                <h2 class="localizacao" id="subTitle"></h2>
+
+                <div class="w3-row-padding w3-padding-32" style="margin:0 -16px" id="categoria_list"></div>
+            </div>
+        </div>
+        <div class="w3-container w3-content w3-center " style="max-width:800px" id="band">
+            <h2 class="w3-wide">Produtos em Destaque</h2>
+
+            <div class="w3-col l12 s12" id="destaque_list"> </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Contact -->
+        <div class="w3-center w3-padding-64" id="contact">
+            <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Fale Conosco</span>
+        </div>
+
+        <form class="w3-container" action="http://localhost:8081/api/tcc/email_page.html" target="_blank">
+            <div class="w3-section">
+                <label>Name</label>
+                <input class="w3-input w3-border w3-hover-border-black" style="width:100%;" type="text" name="Name"
+                    required>
+            </div>
+            <div class="w3-section">
+                <label>Email</label>
+                <input class="w3-input w3-border w3-hover-border-black" style="width:100%;" type="text" name="Email"
+                    required>
+            </div>
+            <div class="w3-section">
+                <label>Subject</label>
+                <input class="w3-input w3-border w3-hover-border-black" style="width:100%;" name="Subject" required>
+            </div>
+            <div class="w3-section">
+                <label>Message</label>
+                <input class="w3-input w3-border w3-hover-border-black" style="width:100%;" name="Message" required>
+            </div>
+            <button type="submit" class="w3-button w3-block w3-black">Send</button>
+        </form>
+        <br></br>
+
+
+    </div>
+    <br></br>
+    <h1 class="localizacao">Nossa Localização</h1>
+    </div>
+    <br></br>
+    <img src="imagens/localization.jpg" class="w3-image w3-greyscale-min" style="width:100%">
+
+    <!-- Footer -->
+
+    <footer class="w3-container w3-padding-32 w3-light-grey w3-center">
+        <h4 id="footer"></h4>
+        <div class="w3-xlarge w3-section" style="display: none;">
+            <i class="fa fa-facebook-official w3-hover-opacity"></i>
+            <i class="fa fa-instagram w3-hover-opacity"></i>
+            <i class="fa fa-snapchat w3-hover-opacity"></i>
+            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+            <i class="fa fa-twitter w3-hover-opacity"></i>
+            <i class="fa fa-linkedin w3-hover-opacity"></i>
+        </div>
+    </footer>
+
+
+
+    <script>
+        // Slideshow
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function currentDiv(n) {
+            showDivs(slideIndex = n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("demodots");
+            if (n > x.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = x.length };
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" w3-white", "");
+            }
+            try {
+                x[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " w3-white";
+
+            } catch (error) { }
+        }
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>
