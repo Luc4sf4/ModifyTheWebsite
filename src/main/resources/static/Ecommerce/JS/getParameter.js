@@ -1,7 +1,7 @@
 jQuery(document).ready(function () {
     $.ajax({
         method: "GET",
-        url: "http://localhost:8080/cadastros/parameter/" + 2, // Concatenando o valor de id à URL
+        url: "http://localhost:8080/cadastros/parameter/" + 1, // Concatenando o valor de id à URL
         success: function (response) {
             console.log(response);
 

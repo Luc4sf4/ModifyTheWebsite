@@ -29,7 +29,7 @@ public class ParametroController {
         
         Parameter newParameter = service.saveParameter(parameter);
         
-        return "Usuario Criado!!" + newParameter.getId();
+        return "Parametro Criado!!" + newParameter.getId();
     }
 
     @GetMapping("/findAll")

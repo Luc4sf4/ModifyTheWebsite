@@ -44,4 +44,16 @@ public class CategoriaService {
     }
 
 
+    public String deleteC(Long id){
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+            return "Deletado com sucesso";
+        }else{
+            return "Não encontrado para o delete";
+        }
+
+
+    }
+
+
 }
