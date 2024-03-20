@@ -18,7 +18,7 @@ public class CategoriaService {
         return repository.save(category);
     }
 
-    public List<Categoria> findAllCategories(Categoria category ){
+    public List<Categoria> findAllCategories( ){
 
         return repository.findAll();
 
@@ -40,6 +40,14 @@ public class CategoriaService {
         }
 
         return null;
+
+    }
+    public String delete(Long id){
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+            return "Deletado com sucesso";
+        }
+        return "não encontrado para o delete";
 
     }
 

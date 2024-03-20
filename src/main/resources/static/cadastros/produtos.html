@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	<title>Página Principal</title>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js"
+		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div id="divHeader"></div>
+
+
+	<form action="" id="formCadastroUser" enctype="multipart/forma-data" method="post">
+
+		<div class="mb-3">
+			<label for="id" class="form-label">ID</label> <input type="text" class="form-control" id="id"
+				readonly="readonly">
+		</div>
+
+		<div class="mb-3">
+
+			<label for="Nome" class="form-label">Id da categoria</label> <input type="text" class="form-control"
+				id="idCat" required="required">
+		</div>
+
+
+
+		<label for="Nome" class="form-label">Titulo do produto</label> <input type="text" class="form-control"
+			id="tituloProduto" required="required">
+
+			<label for="imagem" class="form-label">Selecione uma imagem</label>
+			<input type="file" class="form-control" id="imagem" accept="image/*" required="required">
+
+
+		<label for="Nome" class="form-label"> Descrição do produto</label> <input type="text" class="form-control"
+			id="descProduto" required="required">
+
+		<label for="Nome" class="form-label">Preçõ do produto</label> <input type="text" class="form-control"
+			id="precoProd" required="required">
+	</form>
+
+
+	<button type="button" class="btn btn-primary" onclick="saveProd()">Salvar</button>
+
+
+	<button type="button" class="btn btn-secondary"
+		onclick="document.getElementById('formCadastroUser').reset();">Novo</button>
+
+
+	<button type="button" class="btn btn-danger" data-bs-toggle="modal"
+		data-bs-target="#modalbuscarPorStatus">Pesquisar</button>
+
+
+
+	<button type="button" class="btn btn-warning" onclick="botaodeletarDaTela()">Deletar</button>
+
+
+	<div class="modal fade" id="modalPesquisarUser" tabindex="-1" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Pesquisa de
+						Usuário</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="mb-3">
+							<label for="recipient-name" class="col-form-label">Informe
+								o Nome:</label> <input type="text" class="form-control" id="name">
+						</div>
+						<div class="mb-3"></div>
+						<button type="button" class="btn btn-success" onclick="getUser()">Buscar</button>
+
+					</form>
+
+					<div style="height: 300px; overflow: scroll;">
+						<table class="table" id="tabelaResultados">
+							<thead>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Nome</th>
+									<th scope="col">email</th>
+									<th scope="col">senha</th>
+									<th scope="col">Editar</th>
+									<th scope="col">Deletar</th>
+
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<script type="text/javascript">
+		function botaodeletarDaTela() {
+
+			var id = $('#id').val();
+
+			if (id != null && id.trim() != '') {
+
+				deleteUser(id);
+				document.getElementById('formCadastroUser').reset();
+				0
+			}
+
+		}
+
+		function saveProduct() {
+    const fileInput = document.getElementById('inputFile');
+    const id = $('#id').val();
+    const idCategoria = $('#idCategoria').val();
+    const tituloProd = $('#tituloProd').val();
+    const descProd = $('#descProd').val();
+    const precoProd = $('#precoProd').val();
+    const nomeFoto = $('#tituloFoto').val();
+
+    function imageToBase64(fileInput, callback) {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            const base64Image = e.target.result;
+            callback(base64Image);
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    imageToBase64(fileInput, function (base64Image) {
+        $.ajax({
+            method: "POST",
+            url: "produtos/save",
+            data: JSON.stringify({
+                idProduto: id,
+                idCategoria: idCategoria,
+                titulo: tituloProd,
+                descricao: descProd,
+                preco: precoProd,
+                nomeFoto: nomeFoto,
+                base64: base64Image
+            }),
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                $("#id").val(response.id);
+                alert("Salvo com sucesso");
+            },
+            error: function (xhr, status, errorThrown) {
+                alert("Erro ao salvar: " + xhr.responseText);
+            }
+        });
+    });
+}
+	</script>
+
+</body>
+
+</html>
