@@ -40,8 +40,8 @@
 		<label for="Nome" class="form-label">Titulo do produto</label> <input type="text" class="form-control"
 			id="tituloProduto" required="required">
 
-			<label for="imagem" class="form-label">Selecione uma imagem</label>
-			<input type="file" class="form-control" id="imagem" accept="image/*" required="required">
+		<label for="imagem" class="form-label">Selecione uma imagem</label>
+		<input type="file" class="form-control" id="imagem" accept="image/*" required="required">
 
 
 		<label for="Nome" class="form-label"> Descrição do produto</label> <input type="text" class="form-control"
@@ -66,6 +66,7 @@
 
 	<button type="button" class="btn btn-warning" onclick="botaodeletarDaTela()">Deletar</button>
 
+	<button type="button" class="btn btn-warning" onclick="aparecerImagem()">ver Imagem</button>
 
 	<div class="modal fade" id="modalPesquisarUser" tabindex="-1" aria-labelledby="exampleModalLabel"
 		aria-hidden="true">
@@ -112,8 +113,9 @@
 			</div>
 		</div>
 	</div>
-
-
+	<img src="">
+	<div id="showImage"></div>
+</body>
 
 
 
@@ -132,42 +134,31 @@
 			}
 
 		}
-
-		function saveProduct() {
-    const fileInput = document.getElementById('inputFile');
+		function saveProd() {
     const id = $('#id').val();
-    const idCategoria = $('#idCategoria').val();
-    const tituloProd = $('#tituloProd').val();
-    const descProd = $('#descProd').val();
+    const idCategoria = $('#idCat').val(); 
+    const tituloProd = $('#tituloProduto').val(); 
+    const descProd = $('#descProduto').val();
     const precoProd = $('#precoProd').val();
     const nomeFoto = $('#tituloFoto').val();
+    const fileInput = document.getElementById('imagem');
 
-    function imageToBase64(fileInput, callback) {
+    if (fileInput.files.length > 0) {
         const file = fileInput.files[0];
-        const reader = new FileReader();
+        const formData = new FormData();
+        formData.append('id', id);
+        formData.append('categoria_id', idCategoria);
+        formData.append('nome', tituloProd);
+        formData.append('description', descProd);
+        formData.append('preco', precoProd);
+        formData.append('imagem', file);
 
-        reader.onload = function (e) {
-            const base64Image = e.target.result;
-            callback(base64Image);
-        };
-
-        reader.readAsDataURL(file);
-    }
-
-    imageToBase64(fileInput, function (base64Image) {
         $.ajax({
             method: "POST",
             url: "produtos/save",
-            data: JSON.stringify({
-                idProduto: id,
-                idCategoria: idCategoria,
-                titulo: tituloProd,
-                descricao: descProd,
-                preco: precoProd,
-                nomeFoto: nomeFoto,
-                base64: base64Image
-            }),
-            contentType: "application/json; charset=utf-8",
+            data: formData,
+            processData: false,
+            contentType: false,
             success: function (response) {
                 $("#id").val(response.id);
                 alert("Salvo com sucesso");
@@ -176,10 +167,14 @@
                 alert("Erro ao salvar: " + xhr.responseText);
             }
         });
-    });
+    } else {
+        alert("Selecione uma imagem");
+    }
 }
+
+
 	</script>
 
-</body>
+
 
 </html>
