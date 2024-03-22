@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: postgres
+networks:
+  default:
+    name: local-network
+    external: true
