@@ -2,20 +2,17 @@ package com.example.educall_ecommerce.repositories;
 
 import java.util.List;
 
+import com.example.educall_ecommerce.models.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.educall_ecommerce.models.Produtos;
 
 @Repository
-public interface ProdutoRepository extends JpaRepository<Produtos, Long> {
+public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
-        @Query("SELECT p FROM db_produtos p WHERE p.categoria.id = :categoriaId")
-        List<Produtos> findByCategoriaId(@Param("categoriaId") Long categoriaId);
-
-
-
+        @Query("SELECT p FROM db_produtos p WHERE p.categoria.idCategoria = :categoriaId")
+        List<Produto> findByCategoriaId(@Param("categoriaId") Long categoriaId);
 
 }
