@@ -10,9 +10,12 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ProdutoRepository extends JpaRepository<Produto, Long> {
+public interface ProdutoRepository extends JpaRepository<Produto, String> {
 
-        @Query("SELECT p FROM db_produtos p WHERE p.categoria.idCategoria = :categoriaId")
-        List<Produto> findByCategoriaId(@Param("categoriaId") Long categoriaId);
+        //@Query("SELECT p FROM db_produtos p WHERE p.categoria.idCategoria = :categoriaId")
+        //List<Produto> findByCategoriaId(@Param("categoriaId") Long categoriaId);
+
+
+        List<Produto> findAllByCategoria_IdCategoria(@Param("categoria_id") Long categoria_id);
 
 }

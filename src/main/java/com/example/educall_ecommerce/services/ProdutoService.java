@@ -40,18 +40,18 @@ public class ProdutoService {
 
     @Transactional(readOnly = true)
     public List<Produto> findByCategoria(Long categoriaId) {
-        return produtoRepository.findByCategoriaId(categoriaId);
+        return produtoRepository.findAllByCategoria_IdCategoria(categoriaId);
     }
 
     public List<Produto> getAllProdutos() {
         return produtoRepository.findAll();
     }
 
-    public Produto findById(Long id){
+    public Produto findById(String id){
         return produtoRepository.findById(id).orElse(null);
     }
 
-    public Produto updateProdutos(Long id, Produto updatedProdutos, Long categoriaId) {
+    public Produto updateProdutos(String id, Produto updatedProdutos, Long categoriaId) {
         Produto produto = produtoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado"));
 
@@ -70,7 +70,7 @@ public class ProdutoService {
 
     }
 
-    public void deletarProduto(Long id) {
+    public void deletarProduto(String id) {
         Produto produto = produtoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado"));
 

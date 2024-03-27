@@ -33,12 +33,14 @@ public class ProdutosController {
     }
 
     @GetMapping("/porcategoria/{categoriaId}")
-    public List<Produto> getProductCategory(@PathVariable Long categoriaId) {
-        return produtoService.findByCategoria(categoriaId);
+    public ResponseEntity<List<Produto>> getProductCategory(@PathVariable Long categoriaId) {
+
+        var produtos = this.produtoService.findByCategoria(categoriaId);
+        return new ResponseEntity<>(produtos, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteProduct(@PathVariable Long id, @RequestParam Produto produto){
+    public String deleteProduct(@PathVariable String id, @RequestParam Produto produto){
         if(produto.getId() == null){
             return "Não encontrado para delete";
         }
@@ -49,7 +51,7 @@ public class ProdutosController {
     }
 
     @GetMapping("/imagem/{id}")
-public ResponseEntity<byte[]> getImagemProduto(@PathVariable Long id) {
+public ResponseEntity<byte[]> getImagemProduto(@PathVariable String id) {
     Produto produto = produtoService.findById(id);
     if (produto == null || produto.getBase64() == null) {
         return ResponseEntity.notFound().build();
