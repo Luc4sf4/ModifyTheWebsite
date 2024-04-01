@@ -4,14 +4,10 @@ jQuery(document).ready(function () {
         url: "http://localhost:8080/cadastros/parameter/" + 2, // Concatenando o valor de id à URL
         success: function (response) {
             console.log(response);
-
             $("#tituloHome").text(response.tituloHome);
             $("#colecoes").text(response.colecoes);
             $("#footer").text(response.footer);
             $("#subTitle").text(response.subTitle);
-
-
-
         },
     }).fail(function (xhr, status, errorThrown) {
         alert("Erro ao Buscar Parametro por id: " + xhr.responseText);

@@ -18,4 +18,5 @@ public interface ProdutoRepository extends JpaRepository<Produto, String> {
 
         List<Produto> findAllByCategoria_IdCategoria(@Param("categoria_id") Long categoria_id);
 
+
 }
