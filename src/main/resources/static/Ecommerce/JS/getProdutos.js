@@ -10,16 +10,19 @@ jQuery(document).ready(function () {
 			console.log("Entrou na function");
 			for (let i = 0; i < response.length; i++) {
 				if (response[i].categoria.idCategoria == Math.floor(Math.random() * categoriaRandomica)) {
-					conteudo += '<div class="w3-col s4 "><div class="w3-container"><div class = "w3-container"><img src="'  
-					    + response[i].base64 +'" alt="" class="image">' +
+					conteudo += '<div class="w3-col s4 "><div class="w3-container"><div class="w3-container"><img src="' + response[i].base64 + '" alt="" class="image"></div>'
 						+ response[i].nome +
 						'<br><b>'
 						+ response[i].preco +
-						'</br></b></p></div></div></div>';	
+						'</b></div></div>';	
+
+					'</br></b></p></div></div></div></div>';
+					console.log(response);
 				}
-				
+
 			}
-			console.log(response.nome);
+			console.log(response.nome, response.preco, response.base64);
+
 			$("#destaque_list").append("<div class='w3-row'>" + conteudo + '</div>');
 		}
 	}).fail(function (xhr, status, errorThrown) {
@@ -27,8 +30,3 @@ jQuery(document).ready(function () {
 	});
 
 });
-
-
-
-
-
