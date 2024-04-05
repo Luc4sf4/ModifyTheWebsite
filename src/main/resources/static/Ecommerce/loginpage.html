@@ -6,26 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="css/login.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+
     <title>Cadastro e login</title>
 </head>
-
 <body>
-
     <div class="container" id="container">
         <div class="form-container sign-up">
             <form>
                 <h1>Cadastre-se</h1>
                 <span>Insira os Dados desejados abaixo</span>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button>cadastrar</button>
+                <input type="text" placeholder="Name" name="name" id="name">
+                <input type="email" placeholder="Email" name="email" id="email">
+                <input type="password" placeholder="Password" name="Password" id="password">
+                <input type="password" placeholder="Password" name="Password" id="password2">
+                <button type="button" onclick="saveUser()">cadastrar</button>
+
             </form>
         </div>
         <div class="form-container sign-in">
             <form>
                 <h1>Login</h1>
-        
                 <span>Digite seu email e senha, porfavor</span>
                 <input type="email" placeholder="Email">
                 <input type="password" placeholder="Password">
@@ -46,8 +49,8 @@
             </div>
         </div>
     </div>
-
-    <script src="JS/loginpage.js"></script>
+  
 </body>
-
+<script src="JS/loginpage.js"></script>
+<script src="JS/register.js"></script>
 </html>

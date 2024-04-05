@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@RequestMapping("/users")
+@RequestMapping("cadastros/users")
 @RestController
 public class UsuarioController {
 
